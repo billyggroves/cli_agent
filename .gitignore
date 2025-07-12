@@ -1,2 +1,7 @@
 .env
 venv/
+__pycache__/
+calculator/
+uv.lock
+pyproject.toml
+.python-version
