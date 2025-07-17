@@ -20,6 +20,8 @@ def call_function(function_call_part, verbose=False):
         print(f"Calling function: {function_call_part.name}({function_call_part.args})")
     else:
         print(f" - Calling function: {function_call_part.name}")
+
+    # Manually change to the working directory to point LLM to project you want to give it access to.
     match function_call_part.name:
         case "get_file_content":
             function_result = get_file_content("./calculator", **function_call_part.args)

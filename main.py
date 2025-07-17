@@ -33,7 +33,6 @@ def main():
     ]
 
     for i in range(20):
-        # print(f"messages: {messages}")
         try:
             response = generate_content(client, messages, verbose)
             if not isinstance(response, str):
@@ -55,7 +54,6 @@ def generate_content(client, messages, verbose):
         ),
     )
     for candidate in response.candidates:
-        # print(f"Candidate: {candidate.content}")
         messages.append(candidate.content)
     if verbose:
         print("Prompt tokens:", response.usage_metadata.prompt_token_count)
@@ -65,9 +63,7 @@ def generate_content(client, messages, verbose):
         return response.text
 
     for function_call_part in response.function_calls:
-        # print(f"Calling function: {function_call_part.name}({function_call_part.args})")
         function_call_result = call_function(function_call_part, verbose)
-        # print(f"func_call_result: {function_call_result}")
         if function_call_result.parts[0].function_response.response == "":
             raise Exception(f"Error: no response returned from function called")
         if verbose:
